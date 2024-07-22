@@ -26,46 +26,54 @@ class ReceiptPrinter {}
 
 class NetworkReceiptPrinter extends ReceiptPrinter {
 
+	#emitter;
+	#client;
+	
+	#options = {};
+
 	constructor(options) {
 		super();
 
-        this._internal = {
-            emitter:    new EventEmitter(),
-			client:		new net.Socket(),
+		this.#emitter = new EventEmitter();
+		this.#client = new net.Socket();
+
+        this.#options = {
 			host:		options.host || 'localhost',
 			port:		options.port || 9100
         };
 	}
 
 	async connect() {
-		this._internal.client.connect(this._internal.port, this._internal.host, () => {
-			this._internal.emitter.emit('connected', {
-				type:				'network'
+		this.#client.connect(this.#options.port, this.#options.host, () => {
+			this.#emitter.emit('connected', {
+				type: 'network'
 			});
 		});
 
-		this._internal.client.on('close', () => {
-			this._internal.emitter.emit('disconnected');
+		this.#client.on('close', () => {
+			this.#emitter.emit('disconnected');
 		});
 	}
 
 	async listen() {
-		this._internal.client.on('data', data => {
-			this._internal.emitter.emit('data', data);
+		this.#client.on('data', data => {
+			this.#emitter.emit('data', data);
 		});
+
+		return true;
 	}
 
 	async disconnect() {
-		this._internal.client.destroy();
-		this._internal.emitter.emit('disconnected');
+		this.#client.destroy();
+		this.#emitter.emit('disconnected');
 	}
 	
 	async print(command) {
-		this._internal.client.write(command);
+		this.#client.write(command);
 	}
 
 	addEventListener(n, f) {
-		this._internal.emitter.on(n, f);
+		this.#emitter.on(n, f);
 	}
 }
 
