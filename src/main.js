@@ -1,9 +1,9 @@
 import net from 'node:net';
 import EventEmitter from "./event-emitter.js";
 
-class ReceiptPrinter {}
+class ReceiptPrinterDriver {}
 
-class NetworkReceiptPrinter extends ReceiptPrinter {
+class NetworkReceiptPrinter extends ReceiptPrinterDriver {
 
 	#emitter;
 	#client;
