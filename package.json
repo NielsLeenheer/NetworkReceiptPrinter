@@ -1,6 +1,6 @@
 {
-  "name": "network-receipt-printer",
-  "version": "1.1.0",
+  "name": "@point-of-sale/network-receipt-printer",
+  "version": "2.0.0",
   "type": "module",
   "exports": {
     "import": "./dist/network-receipt-printer.mjs",

@@ -1,5 +1,5 @@
 import NetworkReceiptPrinter from "../src/main.js";
-import ThermalPrinterStatus from "../../ThermalPrinterStatus/dist/thermal-printer-status.esm.js";
+import ReceiptPrinterStatus from "@point-of-sale/receipt-printer-status";
 
 
 const printer = new NetworkReceiptPrinter({
@@ -10,7 +10,7 @@ const printer = new NetworkReceiptPrinter({
 printer.addEventListener('connected', async () => {
     console.log('Connected to printer');
 
-    let printerStatus = new ThermalPrinterStatus({
+    let printerStatus = new ReceiptPrinterStatus({
         language: 'esc-pos',
         printer
     });

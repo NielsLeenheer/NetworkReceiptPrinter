@@ -4,7 +4,30 @@ This is an library that allows you to print to a network receipt printer using N
 
 ## What does this library do?
 
-In order to print a receipt on a receipt printer you need to build the receipt and encode it as in the ESC/POS or StarPRNT language. You can use the [`ThermalPrinterEncoder`](https://github.com/NielsLeenheer/ThermalPrinterEncoder) library for this. You end up with an array of raw bytes that needs to be send to the printer. One way to do that is using a network connection.
+In order to print a receipt on a receipt printer you need to build the receipt and encode it as in the ESC/POS or StarPRNT language. You can use the [`ReceiptPrinterEncoder`](https://github.com/NielsLeenheer/ReceiptPrinterEncoder) library for this. You end up with an array of raw bytes that needs to be send to the printer. One way to do that is using a network connection.
+
+## Installation
+
+If you want to use this libary, first install the package using npm:
+
+    npm install @point-of-sale/network-receipt-printer --save
+
+In your project you can then import it, if you use ES6 modules:
+
+```js
+import NetworkReceiptPrinter from '@point-of-sale/network-receipt-printer';
+
+let receiptPrinter = new NetworkReceiptPrinter();
+```
+
+Or require it, if you are using CommonJS:
+
+```js
+let NetworkReceiptPrinter = require('@point-of-sale/network-receipt-printer');
+
+let receiptPrinter = new NetworkReceiptPrinter();
+```
+
 
 ## Configuration
 
@@ -50,7 +73,7 @@ For example:
 
     /* Encode the receipt */
 
-    let encoder = new ThermalPrinterEncoder({
+    let encoder = new ReceiptPrinterEncoder({
         language:  'esc-pos',
         codepageMapping: 'epson'
     });

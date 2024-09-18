@@ -1,5 +1,5 @@
 import NetworkReceiptPrinter from "../src/main.js";
-import ThermalPrinterEncoder from "../../ThermalPrinterEncoder/dist/thermal-printer-encoder.mjs";
+import ReceiptPrinterEncoder from "@point-of-sale/receipt-printer-encoder";
 
 
 const printer = new NetworkReceiptPrinter({
@@ -7,7 +7,7 @@ const printer = new NetworkReceiptPrinter({
     port: 9100
 });
 
-const encoder = new ThermalPrinterEncoder({
+const encoder = new ReceiptPrinterEncoder({
     language: 'esc-pos',
 });
 
